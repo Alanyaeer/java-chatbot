@@ -8,11 +8,16 @@ import com.wjh.chatbot.entity.ResponseFormat;
 import com.wjh.chatbot.entity.enums.Role;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +25,7 @@ import java.util.List;
 @Slf4j
 public class DeepSeekChat implements CommandLineRunner {
     private final Gson gson = new Gson();
-    @Value("${deepseek.api.key:33}")
+    @Value("${deepseek.api-key:33}")
     private String apiKey;
     private void doChat() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
@@ -29,7 +34,7 @@ public class DeepSeekChat implements CommandLineRunner {
         Message messageSystem = Message.builder().role(Role.SYSTEM.getValue()).content("你是一个香香软软的小蛋糕").build();
         Message messageUser = Message.builder().role(Role.USER.getValue()).content("你是谁呀").build();
         List<Message> messageList = Arrays.asList(messageSystem, messageUser);
-
+        log.info("apiKey: {}", apiKey);
 
         ChatRequest chatRequest = ChatRequest.builder().messages(messageList).model("deepseek-chat").build();
         String json = gson.toJson(chatRequest);

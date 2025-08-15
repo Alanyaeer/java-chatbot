@@ -1,5 +1,22 @@
 spring:
   application:
     name: chatbot
+  config:
+    import: nacos:chatbot-dev.yaml
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+      config:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+        file-extension: yaml
+        group: DEFAULT_GROUP
+
 server:
   port: 8080
