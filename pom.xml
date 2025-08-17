@@ -69,6 +69,19 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
             <version>2021.0.5.0</version> <!-- 根据你的 Spring Boot 版本选择 -->
         </dependency>
+        <!-- MongoDB Java Driver -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>4.6.1</version>
+        </dependency>
+
+        <!-- OpenCSV 用于 CSV 解析 -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.9</version>
+        </dependency>
     </dependencies>
 
     <build>
